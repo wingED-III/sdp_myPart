@@ -29,6 +29,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         this.TABLE_NAME =table_name;
         this.DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
         this.TOTAL_PATH = this.DB_PATH+this.DB_NAME;
+        Log.d(table_name, "SqliteHelper Create ");
     }
 
     @Override

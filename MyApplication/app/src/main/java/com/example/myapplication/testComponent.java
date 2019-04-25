@@ -1,5 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteException;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +15,18 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.myapplication.Listview.MyBlock;
+import com.example.myapplication.Listview.abs_Myadapter;
+import com.example.myapplication.javaSQL.SqliteHelper;
+import com.example.myapplication.Defination.*;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class testComponent extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class testComponent extends SkytrainActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +34,9 @@ public class testComponent extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_test_component);
 
         // Spinner
-        Spinner spinner = findViewById(R.id.items);
+        this.spinner = findViewById(R.id.items);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.bts,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bts, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -39,8 +51,8 @@ public class testComponent extends AppCompatActivity implements AdapterView.OnIt
         RadioButton cbRestaurant = (RadioButton) findViewById(R.id.restaurantCB);
         RadioButton cbNature = (RadioButton) findViewById(R.id.natureCB);
         RadioButton cbShopping = (RadioButton) findViewById(R.id.shoppingCB);
-        RadioButton cbOthers = (RadioButton) findViewById(R.id.othersCB) ;
-        Button searchButton  = (Button)findViewById(R.id.searchButton);
+        RadioButton cbOthers = (RadioButton) findViewById(R.id.othersCB);
+        Button searchButton = (Button) findViewById(R.id.searchButton);
 
         cbMarket.setOnClickListener(this);
         cbRestaurant.setOnClickListener(this);
@@ -49,42 +61,33 @@ public class testComponent extends AppCompatActivity implements AdapterView.OnIt
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+
+        this.constructListView(getBaseContext(), "BTS_TABLE", myConstatnt.BTS_CONST,R.id.btsLV);
     }
+
     // Spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        this.whenSpinnerSelected();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     //----------------------------------------------------------
     // RadioButton & Search button
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.marketCB:
-                Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.restaurantCB:
-                Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.natureCB:
-                Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.shoppingCB:
-                Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.othersCB:
-                Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
-                break;
+        this.whenClick(v);
+    }
 
-            case R.id.searchButton:
-                Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
-                break;
-        }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.gc();
+        finish();
     }
 }

@@ -1,36 +1,44 @@
 package com.example.myapplication;
 
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Defination.myConstatnt;
-import com.example.myapplication.Listview.*;
+import com.example.myapplication.Filter.SearchFilter;
+import com.example.myapplication.Listview.MyBlock;
+import com.example.myapplication.Listview.abs_Myadapter;
 import com.example.myapplication.javaSQL.SqliteHelper;
-import com.example.myapplication.Filter.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MRT extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+abstract class SkytrainActivity extends AppCompatActivity {
+
+
+    private ListView listView;
+    private ArrayList<MyBlock> blockList = new ArrayList<>();;
+    private ArrayList<MyBlock> allBlock = new ArrayList<>();
+
+    protected SqliteHelper myDB;
+    protected Spinner spinner;
+    protected SearchFilter searchFilter = new SearchFilter();
+    protected Myadapter myadapter;
 
     class Myadapter extends abs_Myadapter {
         Myadapter(Context context, int layout, ArrayList<MyBlock> myBlockArrayList) {
             super(context, layout, myBlockArrayList);
         }
-
         @Override
         public void openWeb() {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -38,57 +46,13 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
             startActivity(intent);
         }
     }
-
     ;
 
-    private SearchFilter searchFilter = new SearchFilter();
-    private Myadapter myadapter;
-    private ListView listView;
-    private ArrayList<MyBlock> blockList;
-    private ArrayList<MyBlock> allBlock = new ArrayList<>();
 
-    private Spinner spinner;
+    protected void constructListView(Context context, String tableName, int TRANSPORT_CONSTANT,int listviewID) {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mrt);
-
-        // Spinner
-        spinner = findViewById(R.id.items);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.mrt, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-        //----------------------------------------------
-
-        // RadioButton
-        RadioButton cbMarket = (RadioButton) findViewById(R.id.marketCB);
-        RadioButton cbRestaurant = (RadioButton) findViewById(R.id.restaurantCB);
-        RadioButton cbNature = (RadioButton) findViewById(R.id.natureCB);
-        RadioButton cbShopping = (RadioButton) findViewById(R.id.shoppingCB);
-        RadioButton cbOthers = (RadioButton) findViewById(R.id.othersCB);
-        Button searchButton = (Button) findViewById(R.id.searchButton);
-
-        cbMarket.setOnClickListener(this);
-        cbRestaurant.setOnClickListener(this);
-        cbNature.setOnClickListener(this);
-        cbShopping.setOnClickListener(this);
-        cbOthers.setOnClickListener(this);
-        searchButton.setOnClickListener(this);
-
-        SqliteHelper myDB = new SqliteHelper(this, "MRT_TABLE");
-
-        listView = (ListView) findViewById(R.id.mrtLV);
-        blockList = new ArrayList<>();
-
-        /* M ------------------ */
-
+        this.listView = findViewById(listviewID);
+        myDB = new SqliteHelper(getBaseContext(), tableName);
         try {
             myDB.createDB();
         } catch (IOException e) {
@@ -100,11 +64,11 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         } catch (SQLiteException e) {
             throw e;
         }
-        //---------Skytrain class-------//
+
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("field2")) - myConstatnt.MRT_CONST;
+            int stationID = line.getInt(line.getColumnIndex("field2")) - TRANSPORT_CONSTANT;
             int type = line.getInt(line.getColumnIndex(
                     "field7"));
 
@@ -113,35 +77,26 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
 
             MyBlock myBlock = new MyBlock(stationID, type, location, descript);
             blockList.add(myBlock);
-        } while (line.moveToNext());
+    } while (line.moveToNext());
 
         allBlock.addAll(blockList);
-        //---------in Skytrain class-------//
-
-        myadapter = new Myadapter(getBaseContext(), R.layout.btsspot_01, blockList);
+        myadapter = new Myadapter(context, R.layout.btsspot_01, blockList);
         listView.setAdapter(myadapter);
-
-        /*  ----------------------*/
-
     }
 
-    // Spinner
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+
+    protected void doSearch() {
+        //Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
+        searchFilter.filtering(blockList, allBlock);
+        myadapter.notifyDataSetChanged();
+        System.gc();
+    }
+
+    protected void whenSpinnerSelected() {
         this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    //----------------------------------------------------------
-    // RadioButton & Search button
-    @Override
-    public void onClick(View v) {
+    protected void whenClick(View v) {
         switch (v.getId()) {
             case R.id.marketCB:
                 Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
@@ -173,10 +128,4 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        System.gc();
-        finish();
-    }
 }
