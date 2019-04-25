@@ -27,7 +27,8 @@ abstract class SkytrainActivity extends AppCompatActivity {
 
 
     private ListView listView;
-    private ArrayList<MyBlock> blockList = new ArrayList<>();;
+    private ArrayList<MyBlock> blockList = new ArrayList<>();
+    ;
     private ArrayList<MyBlock> allBlock = new ArrayList<>();
 
     protected SqliteHelper myDB;
@@ -39,6 +40,7 @@ abstract class SkytrainActivity extends AppCompatActivity {
         Myadapter(Context context, int layout, ArrayList<MyBlock> myBlockArrayList) {
             super(context, layout, myBlockArrayList);
         }
+
         @Override
         public void openWeb() {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -46,10 +48,11 @@ abstract class SkytrainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     ;
 
 
-    protected void constructListView(Context context, String tableName, int TRANSPORT_CONSTANT,int listviewID) {
+    protected void constructListView(Context context, String tableName, int TRANSPORT_CONSTANT, int listviewID) {
 
         this.listView = findViewById(listviewID);
         myDB = new SqliteHelper(getBaseContext(), tableName);
@@ -68,16 +71,15 @@ abstract class SkytrainActivity extends AppCompatActivity {
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("field2")) - TRANSPORT_CONSTANT;
+            int stationID = line.getInt(line.getColumnIndex("field2")) - TRANSPORT_CONSTANT - 1;  //spinner start at 0
             int type = line.getInt(line.getColumnIndex(
                     "field7"));
-
             String location = line.getString(line.getColumnIndex("field4"));
             String descript = line.getString(line.getColumnIndex("field5"));
 
             MyBlock myBlock = new MyBlock(stationID, type, location, descript);
             blockList.add(myBlock);
-    } while (line.moveToNext());
+        } while (line.moveToNext());
 
         allBlock.addAll(blockList);
         myadapter = new Myadapter(context, R.layout.btsspot_01, blockList);
@@ -94,6 +96,7 @@ abstract class SkytrainActivity extends AppCompatActivity {
 
     protected void whenSpinnerSelected() {
         this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
+        Toast.makeText(this, "id = " + this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
     }
 
     protected void whenClick(View v) {

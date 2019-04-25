@@ -104,7 +104,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("field2")) - myConstatnt.MRT_CONST;
+            int stationID = line.getInt(line.getColumnIndex("field2")) - myConstatnt.MRT_CONST - 1; //spinner start at 0
             int type = line.getInt(line.getColumnIndex(
                     "field7"));
 
@@ -131,6 +131,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
         this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
+        Toast.makeText(this, "id = "+this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
