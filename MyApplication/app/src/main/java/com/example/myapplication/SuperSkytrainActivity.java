@@ -23,18 +23,15 @@ import com.example.myapplication.javaSQL.SqliteHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 
-abstract class SuperActivity extends AppCompatActivity {
-
-
-    private ListView listView;
+abstract class SuperSkytrainActivity extends AppCompatActivity {
     private ArrayList<MyBlock> blockList = new ArrayList<>();
-    ;
     private ArrayList<MyBlock> allBlock = new ArrayList<>();
+    private SqliteHelper myDB;
+    private SearchFilter searchFilter = new SearchFilter();
+    private Myadapter myadapter;
 
-    protected SqliteHelper myDB;
+    protected ListView listView;
     protected Spinner spinner;
-    protected SearchFilter searchFilter = new SearchFilter();
-    protected Myadapter myadapter;
 
     class Myadapter extends abs_Myadapter {
         Myadapter(Context context, int layout, ArrayList<MyBlock> myBlockArrayList) {
@@ -71,11 +68,12 @@ abstract class SuperActivity extends AppCompatActivity {
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("field2")) - TRANSPORT_CONSTANT - 1;  //spinner start at 0
-            int type = line.getInt(line.getColumnIndex(
-                    "field7"));
-            String location = line.getString(line.getColumnIndex("field4"));
-            String descript = line.getString(line.getColumnIndex("field5"));
+            int stationID = line.getInt(line.getColumnIndex("station_id")) - TRANSPORT_CONSTANT - 1;  //spinner start at 0
+            int type = line.getInt(line.getColumnIndex("type"));
+
+            String location = line.getString(line.getColumnIndex("location"));
+            String availTime =  line.getString(line.getColumnIndex("available_time"));
+            String descript = line.getString(line.getColumnIndex("description")) + "\n\n"+"เวลาทำการ: "+ availTime;
 
             MyBlock myBlock = new MyBlock(stationID, type, location, descript);
             blockList.add(myBlock);

@@ -66,6 +66,10 @@
         tools:ignore="Orientation">
 
 
+        <ListView
+            android:id="@+id/kmitlLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </RelativeLayout>

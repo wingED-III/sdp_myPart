@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class university_TU extends AppCompatActivity implements View.OnClickListener {
+import com.example.myapplication.Defination.myConstatnt;
+
+public class university_TU extends SuperUnivActitivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +18,8 @@ public class university_TU extends AppCompatActivity implements View.OnClickList
 
         Button buttonHome = findViewById(R.id.homeTU);
         buttonHome.setOnClickListener(this);
+
+        this.constructListView(getBaseContext(), myConstatnt.TU_CONST,R.id.tuLV);
     }
 
     public void openHome(){

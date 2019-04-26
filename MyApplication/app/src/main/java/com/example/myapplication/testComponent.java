@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Defination.*;
 
-public class testComponent extends SuperActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class testComponent extends SuperSkytrainActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
 
     @Override

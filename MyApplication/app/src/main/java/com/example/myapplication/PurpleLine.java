@@ -1,23 +1,16 @@
 package com.example.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Defination.myConstatnt;
 
-import java.util.List;
-import java.util.ArrayList;
-
-public class PurpleLine extends SuperActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class PurpleLine extends SuperSkytrainActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

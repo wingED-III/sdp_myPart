@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class university_KMITL extends AppCompatActivity implements View.OnClickListener {
+import com.example.myapplication.Defination.myConstatnt;
+
+public class university_KMITL extends SuperUnivActitivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +18,8 @@ public class university_KMITL extends AppCompatActivity implements View.OnClickL
 
         Button buttonHome = findViewById(R.id.home_KMITL);
         buttonHome.setOnClickListener(this);
+
+        this.constructListView(getBaseContext(), myConstatnt.KMITL_CONT,R.id.kmitlLV);
     }
 
     public void openHome(){

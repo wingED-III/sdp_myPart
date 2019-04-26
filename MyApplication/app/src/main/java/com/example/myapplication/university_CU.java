@@ -1,13 +1,13 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class university_CU extends AppCompatActivity implements View.OnClickListener {
+import com.example.myapplication.Defination.myConstatnt;
+
+public class university_CU extends SuperUnivActitivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,8 @@ public class university_CU extends AppCompatActivity implements View.OnClickList
 
         Button buttonHome = findViewById(R.id.homeCU);
         buttonHome.setOnClickListener(this);
+
+        this.constructListView(getBaseContext(), myConstatnt.CU_CONST,R.id.cuLV);
     }
 
     public void openHome(){   // Calculate fee

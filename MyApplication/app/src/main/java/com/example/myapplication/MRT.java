@@ -104,12 +104,12 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("field2")) - myConstatnt.MRT_CONST - 1; //spinner start at 0
-            int type = line.getInt(line.getColumnIndex(
-                    "field7"));
+            int stationID = line.getInt(line.getColumnIndex("station_id")) - myConstatnt.MRT_CONST - 1; //spinner start at 0
+            int type = line.getInt(line.getColumnIndex("type"));
 
-            String location = line.getString(line.getColumnIndex("field4"));
-            String descript = line.getString(line.getColumnIndex("field5"));
+            String location = line.getString(line.getColumnIndex("location"));
+            String availTime = line.getString(line.getColumnIndex("available_time"));
+            String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
 
             MyBlock myBlock = new MyBlock(stationID, type, location, descript);
             blockList.add(myBlock);
@@ -131,7 +131,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
         this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
-        Toast.makeText(this, "id = "+this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "id = " + this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -6,12 +6,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Defination.myConstatnt;
 
-public class ARL extends SuperActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class ARL extends SuperSkytrainActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
