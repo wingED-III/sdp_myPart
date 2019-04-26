@@ -11,10 +11,13 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.myapplication.Defination.myConstatnt;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class PurpleLine extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class PurpleLine extends SuperActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,7 @@ public class PurpleLine extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.activity_purple_line);
 
         // Spinner
-        Spinner spinner = findViewById(R.id.items);
+        this.spinner = findViewById(R.id.items);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.purple,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,41 +52,32 @@ public class PurpleLine extends AppCompatActivity implements AdapterView.OnItemS
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        this.constructListView(getBaseContext(), "VIOLET_MRT_TABLE", myConstatnt.VIOLET_CONST,R.id.violetPage);
     }
+
     // Spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        this.whenSpinnerSelected();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     //----------------------------------------------------------
     // RadioButton & Search button
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.marketCB:
-                Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.restaurantCB:
-                Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.natureCB:
-                Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.shoppingCB:
-                Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.othersCB:
-                Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.searchButton:
-                Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
-                break;
-        }
+        this.whenClick(v);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.gc();
+        finish();
     }
 }

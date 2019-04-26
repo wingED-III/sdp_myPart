@@ -147,6 +147,12 @@
         tools:ignore="Orientation">
 
 
+        <ListView
+            android:id="@+id/arlLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/list_item"
+            android:layout_alignTop="@+id/list_item" />
     </LinearLayout>
 
 </RelativeLayout>

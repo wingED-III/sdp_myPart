@@ -1,31 +1,16 @@
 package com.example.myapplication;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteException;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.myapplication.Listview.MyBlock;
-import com.example.myapplication.Listview.abs_Myadapter;
-import com.example.myapplication.javaSQL.SqliteHelper;
 import com.example.myapplication.Defination.*;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-
-public class testComponent extends SkytrainActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class testComponent extends SuperActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
 
     @Override
@@ -64,7 +49,6 @@ public class testComponent extends SkytrainActivity implements AdapterView.OnIte
 
         this.constructListView(getBaseContext(), "BTS_TABLE", myConstatnt.BTS_CONST,R.id.btsLV);
     }
-
     // Spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -90,4 +74,5 @@ public class testComponent extends SkytrainActivity implements AdapterView.OnIte
         System.gc();
         finish();
     }
+
 }

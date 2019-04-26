@@ -1,20 +1,17 @@
 package com.example.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-import java.util.List;
-import java.util.ArrayList;
 
-public class ARL extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+import com.example.myapplication.Defination.myConstatnt;
+
+public class ARL extends SuperActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +19,7 @@ public class ARL extends AppCompatActivity implements AdapterView.OnItemSelected
         setContentView(R.layout.activity_arl);
 
         // Spinner
-        Spinner spinner = findViewById(R.id.items);
+        this.spinner = findViewById(R.id.items);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.arl,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,42 +46,32 @@ public class ARL extends AppCompatActivity implements AdapterView.OnItemSelected
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+
+        this.constructListView(getBaseContext(), "ARL_TABLE", myConstatnt.ARL_CONST,R.id.arlLV);
     }
     // Spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        this.whenSpinnerSelected();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     //----------------------------------------------------------
     // RadioButton & Search button
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.marketCB:
-                Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.restaurantCB:
-                Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.natureCB:
-                Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.shoppingCB:
-                Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.othersCB:
-                Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
-                break;
+        this.whenClick(v);
+    }
 
-            case R.id.searchButton:
-                Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
-                break;
-        }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.gc();
+        finish();
     }
 }

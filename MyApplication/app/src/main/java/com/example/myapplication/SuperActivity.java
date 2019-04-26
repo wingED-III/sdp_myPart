@@ -23,7 +23,7 @@ import com.example.myapplication.javaSQL.SqliteHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 
-abstract class SkytrainActivity extends AppCompatActivity {
+abstract class SuperActivity extends AppCompatActivity {
 
 
     private ListView listView;
