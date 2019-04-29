@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#22000000"
-    tools:context=".testComponent">
+    tools:context=".BTS">
 
     <LinearLayout
         android:id="@+id/header"

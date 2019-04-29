@@ -51,7 +51,7 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
 
     protected void constructListView(Context context, String tableName, int TRANSPORT_CONSTANT, int listviewID) {
-
+        this.spinner.setSelection(0);
         this.listView = findViewById(listviewID);
         myDB = new SqliteHelper(getBaseContext(), tableName);
         try {

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void openActivity6(){   // BTS
         //Toast.makeText(this,"BTS_Clicked",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,testComponent.class);
+        Intent intent = new Intent(this, BTS.class);
         startActivity(intent);
     }
     public void openActivity7(){   // Minibus-SongTaew

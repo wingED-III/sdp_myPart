@@ -66,7 +66,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
+        spinner.setSelection(0);
         //----------------------------------------------
 
         // RadioButton
