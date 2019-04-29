@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -24,6 +26,7 @@ import com.example.myapplication.javaSQL.SqliteHelper;
 import com.example.myapplication.Filter.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MRT extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -112,9 +115,28 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
             String location = line.getString(line.getColumnIndex("location"));
             String availTime = line.getString(line.getColumnIndex("available_time"));
             String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-            //int imageID = this.getResources().getIdentifier(location,"id",this.getPackageName());
-            //Log.d("Construct", "imageID= "+imageID);
-            MyBlock myBlock = new MyBlock(stationID, type, location, descript,0);
+
+            double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
+            double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
+            double lat_dest = line.getDouble(line.getColumnIndex("dest_latitude"));
+            double long_dest = line.getDouble(line.getColumnIndex("dest_longitude"));
+
+
+            LocationCoordinate coordinate = new LocationCoordinate(lat_start, lat_dest, long_start, long_dest);
+            //Log.d("Latintude", "start: "+lat_start);
+            Drawable drawable = null;
+            try {
+                // get input stream
+                InputStream ims = getAssets().open("bts_asset/" + location + ".jpg");
+                // load image as Drawable
+                drawable = Drawable.createFromStream(ims, null);
+                //Log.d("aSDAA", "executeeeeeeeeeeee: ");
+            } catch (IOException ex) {
+                Log.e("View", "Image from Asset ", ex);
+            }
+
+            MyBlock myBlock = new MyBlock(stationID, type, location, descript, drawable, coordinate);
+
             blockList.add(myBlock);
         } while (line.moveToNext());
 

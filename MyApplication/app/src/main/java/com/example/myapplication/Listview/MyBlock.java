@@ -1,5 +1,6 @@
 package com.example.myapplication.Listview;
 
+import android.graphics.drawable.Drawable;
 import android.widget.Button;
 
 public class MyBlock {
@@ -8,22 +9,40 @@ public class MyBlock {
     private String location;
     private String descript;
     private Button button;
-    private int imageID;
+    private Drawable image_drawble;
+    private LocationCoordinate coordinate;
 
-    public MyBlock(int statinID, int type, String location, String descript, int imageID) {
+    public LocationCoordinate getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(LocationCoordinate coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public MyBlock(int statinID, int type, String location, String descript, Drawable image_drawble, LocationCoordinate coordinate) {
         this.statinID = statinID;
         this.type = type;
         this.location = location;
         this.descript = descript;
-        this.imageID = imageID;
+        this.image_drawble = image_drawble;
+        this.coordinate = coordinate;
     }
 
-    public int getImageID() {
-        return imageID;
+    public MyBlock(int statinID, int type, String location, String descript, Drawable image_drawble) {
+        this.statinID = statinID;
+        this.type = type;
+        this.location = location;
+        this.descript = descript;
+        this.image_drawble = image_drawble;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public Drawable getImage_drawble() {
+        return image_drawble;
+    }
+
+    public void setImage_drawble(Drawable image_drawble) {
+        this.image_drawble = image_drawble;
     }
 
     public Button getButton() {

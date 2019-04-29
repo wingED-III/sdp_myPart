@@ -1,6 +1,8 @@
 package com.example.myapplication.Listview;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public abstract class abs_Myadapter extends ArrayAdapter {
@@ -38,8 +42,8 @@ public abstract class abs_Myadapter extends ArrayAdapter {
 
         MyBlock block = myBlockArrayList.get(position);
 
-//        ImageView img = (ImageView) view.findViewById(R.id.locationImg);
-//        img.setImageResource(block.getImageID());
+        ImageView img = (ImageView) view.findViewById(R.id.location_Img);
+        img.setImageDrawable(block.getImage_drawble());
 
         TextView tvName = (TextView) view.findViewById(R.id.spotname);
         tvName.setText(block.getLocation());

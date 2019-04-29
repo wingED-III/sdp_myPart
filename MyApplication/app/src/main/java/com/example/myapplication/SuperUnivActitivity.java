@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import com.example.myapplication.Defination.myConstatnt;
 
-public class SuperUnivActitivity extends AppCompatActivity {
+abstract public class SuperUnivActitivity extends AppCompatActivity {
 
     private ArrayList<MyBlock> blockList = new ArrayList<>();
     private ArrayList<MyBlock> allBlock = new ArrayList<>();
@@ -46,7 +46,7 @@ public class SuperUnivActitivity extends AppCompatActivity {
 
     protected void constructListView(Context context, int UNIV_CONST, int listviewID) {
         this.listView = findViewById(listviewID);
-        myDB = new SqliteHelper(getBaseContext(), "UNIV_TABLE");
+        myDB = new SqliteHelper(getBaseContext(), "UNIV");
         try {
             myDB.createDB();
         } catch (IOException e) {
@@ -70,7 +70,15 @@ public class SuperUnivActitivity extends AppCompatActivity {
                 String availTime = line.getString(line.getColumnIndex("available_time"));
                 String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
                 int imageID = this.getResources().getIdentifier(location,"drawable",this.getPackageName());
-                MyBlock myBlock = new MyBlock(uID, type, location, descript,imageID);
+                double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
+                double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
+                double lat_dest = line.getDouble(line.getColumnIndex("dest_latitude"));
+                double long_dest = line.getDouble(line.getColumnIndex("dest_longitude"));
+
+                LocationCoordinate coordinate = new LocationCoordinate(lat_start,lat_dest,long_start,long_dest);
+
+                MyBlock myBlock = new MyBlock(uID, type, location, descript,null,coordinate);
+
                 blockList.add(myBlock);
             }
 
