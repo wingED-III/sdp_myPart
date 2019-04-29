@@ -69,8 +69,8 @@ public class SuperUnivActitivity extends AppCompatActivity {
                 String location = line.getString(line.getColumnIndex("location"));
                 String availTime = line.getString(line.getColumnIndex("available_time"));
                 String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-
-                MyBlock myBlock = new MyBlock(uID, type, location, descript);
+                int imageID = this.getResources().getIdentifier(location,"drawable",this.getPackageName());
+                MyBlock myBlock = new MyBlock(uID, type, location, descript,imageID);
                 blockList.add(myBlock);
             }
 

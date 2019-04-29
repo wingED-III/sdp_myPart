@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -37,8 +38,8 @@ public abstract class abs_Myadapter extends ArrayAdapter {
 
         MyBlock block = myBlockArrayList.get(position);
 
-//            ImageView img = (ImageView) view.findViewById(R.id.LocationImageView);
-//            img.setImageResource(block.getImage);
+//        ImageView img = (ImageView) view.findViewById(R.id.locationImg);
+//        img.setImageResource(block.getImageID());
 
         TextView tvName = (TextView) view.findViewById(R.id.spotname);
         tvName.setText(block.getLocation());
@@ -55,7 +56,6 @@ public abstract class abs_Myadapter extends ArrayAdapter {
                 openWeb();
             }
         });
-
 
 
         return view;

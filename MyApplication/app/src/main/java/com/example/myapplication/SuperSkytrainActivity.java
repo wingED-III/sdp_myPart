@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -74,8 +75,10 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             String location = line.getString(line.getColumnIndex("location"));
             String availTime =  line.getString(line.getColumnIndex("available_time"));
             String descript = line.getString(line.getColumnIndex("description")) + "\n\n"+"เวลาทำการ: "+ availTime;
+           // int imageID = this.getResources().getIdentifier(location,"id",this.getPackageName());
+           // Log.d("Construct", "imageID= "+imageID);
+            MyBlock myBlock = new MyBlock(stationID, type, location, descript,0);
 
-            MyBlock myBlock = new MyBlock(stationID, type, location, descript);
             blockList.add(myBlock);
         } while (line.moveToNext());
 

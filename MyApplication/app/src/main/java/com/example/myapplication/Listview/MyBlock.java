@@ -8,17 +8,28 @@ public class MyBlock {
     private String location;
     private String descript;
     private Button button;
+    private int imageID;
+
+    public MyBlock(int statinID, int type, String location, String descript, int imageID) {
+        this.statinID = statinID;
+        this.type = type;
+        this.location = location;
+        this.descript = descript;
+        this.imageID = imageID;
+    }
+
+    public int getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
+    }
 
     public Button getButton() {
         return button;
     }
 
-    public MyBlock(int statinID, int type, String location, String descript) {
-        this.statinID = statinID;
-        this.type = type;
-        this.location = location;
-        this.descript = descript;
-    }
 
     public int getStatinID() {
         return statinID;

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -110,8 +112,9 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
             String location = line.getString(line.getColumnIndex("location"));
             String availTime = line.getString(line.getColumnIndex("available_time"));
             String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-
-            MyBlock myBlock = new MyBlock(stationID, type, location, descript);
+            //int imageID = this.getResources().getIdentifier(location,"id",this.getPackageName());
+            //Log.d("Construct", "imageID= "+imageID);
+            MyBlock myBlock = new MyBlock(stationID, type, location, descript,0);
             blockList.add(myBlock);
         } while (line.moveToNext());
 
