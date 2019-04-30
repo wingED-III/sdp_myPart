@@ -34,8 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     TextView mainmenu ;
 
-    final LatLng sydney = new LatLng(-34, 151);
-    final LatLng myHome = new LatLng(-34.1, 150);
+     LatLng destCo = new LatLng(-34, 151);
+     LatLng sourcCo = new LatLng(-34.1, 150);
 
 
     @Override
@@ -57,12 +57,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         buttonHybrid.setOnClickListener(this);
         buttonNavigate.setOnClickListener(this);
 //
-//        Bundle bundle = getIntent().getExtras();
-//
-//        double lati_start = bundle.getDouble("lati_start");
-//        double longi_start = bundle.getDouble("longi_start");
-//        double lati_dest = bundle.getDouble("lati_dest");
-//        double longi_dest = bundle.getDouble("longi_dest");
+        Bundle bundle = getIntent().getExtras();
+
+        double lati_start = bundle.getDouble("lati_start");
+        double longi_start = bundle.getDouble("longi_start");
+        double lati_dest = bundle.getDouble("lati_dest");
+        double longi_dest = bundle.getDouble("longi_dest");
+
+        sourcCo = new LatLng(lati_start,longi_start);
+        destCo = new LatLng(lati_dest,longi_dest);
+
     }
 
     @Override
@@ -70,7 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch (view.getId()) {
             case R.id.buttonNavigate:
 
-                openGoogleMap(myHome, sydney);
+                openGoogleMap(sourcCo, destCo);
                 break;
             case R.id.buttonSatellite:
                 buttonSatellite.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_map2));
@@ -109,10 +113,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").snippet("Hello Sydney"));
+        mMap.addMarker(new MarkerOptions().position(destCo).title("Marker in Sydney").snippet("Hello Sydney"));
 
 
-        mMap.addMarker(new MarkerOptions().position(myHome).title("My Home").snippet("Hello my home"));
+        mMap.addMarker(new MarkerOptions().position(sourcCo).title("My Home").snippet("Hello my home"));
 
         LatLng center = new LatLng(-34.05, 150.5);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 8));
@@ -164,8 +168,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         mMap.addPolyline(new PolylineOptions().geodesic(true)
-                .add(sydney)  // Sydney
-                .add(myHome));// My Home
+                .add(destCo)  // Sydney
+                .add(sourcCo));// My Home
 
 
     }
