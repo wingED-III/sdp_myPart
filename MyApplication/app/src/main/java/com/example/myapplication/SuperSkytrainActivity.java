@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -64,7 +66,9 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
 
     protected void constructListView(Context context, String tableName, int TRANSPORT_CONSTANT, int listviewID) {
+
         this.spinner.setSelection(0);
+
         this.listView = findViewById(listviewID);
         myDB = new SqliteHelper(getBaseContext(), tableName);
         try {

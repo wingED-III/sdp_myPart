@@ -45,6 +45,9 @@ public class ARL extends SuperSkytrainActivity implements AdapterView.OnItemSele
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        RadioButton cbAll = (RadioButton) findViewById(R.id.allCB);
+        cbAll.setOnClickListener(this);
+
 
         this.constructListView(getBaseContext(), "ARL_TABLE", myConstatnt.ARL_CONST,R.id.arlLV);
     }

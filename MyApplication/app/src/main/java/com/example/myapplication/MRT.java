@@ -64,6 +64,9 @@ public class MRT extends SuperSkytrainActivity implements AdapterView.OnItemSele
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        RadioButton cbAll = (RadioButton) findViewById(R.id.allCB);
+        cbAll.setOnClickListener(this);
+
         this.constructListView(getBaseContext(), "MRT_TABLE", myConstatnt.MRT_CONST, R.id.mrtLV);
 
     }

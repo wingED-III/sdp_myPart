@@ -46,6 +46,9 @@ public class BTS extends SuperSkytrainActivity implements AdapterView.OnItemSele
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        RadioButton cbAll = (RadioButton) findViewById(R.id.allCB);
+        cbAll.setOnClickListener(this);
+
 
         this.constructListView(getBaseContext(), "BTS_TABLE", myConstatnt.BTS_CONST,R.id.btsLV);
     }

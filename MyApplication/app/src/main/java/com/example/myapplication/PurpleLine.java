@@ -45,6 +45,9 @@ public class PurpleLine extends SuperSkytrainActivity implements AdapterView.OnI
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        RadioButton cbAll = (RadioButton) findViewById(R.id.allCB);
+        cbAll.setOnClickListener(this);
+
         this.constructListView(getBaseContext(), "VIOLET_MRT_TABLE", myConstatnt.VIOLET_CONST,R.id.violetPage);
     }
 
