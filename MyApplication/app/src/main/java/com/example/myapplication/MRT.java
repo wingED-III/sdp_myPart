@@ -55,7 +55,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
             intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
             intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
             intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
-            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
+            //Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
             startActivity(intent);
         }
     }
@@ -143,7 +143,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
             Drawable drawable = null;
             try {
                 // get input stream
-                InputStream ims = getAssets().open("bts_asset/" + location + ".jpg");
+                InputStream ims = getAssets().open("loc_img/" + location + ".jpg");
                 // load image as Drawable
                 drawable = Drawable.createFromStream(ims, null);
                 //Log.d("aSDAA", "executeeeeeeeeeeee: ");

@@ -102,7 +102,7 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             Drawable drawable = null;
             try {
                 // get input stream
-                InputStream ims = getAssets().open("bts_asset/" + location + ".jpg");
+                InputStream ims = getAssets().open("loc_img/"+location + ".jpg");
                 // load image as Drawable
                 drawable = Drawable.createFromStream(ims, null);
                 //Log.d("aSDAA", "executeeeeeeeeeeee: ");
