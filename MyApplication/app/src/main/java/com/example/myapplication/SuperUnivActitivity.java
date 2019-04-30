@@ -101,4 +101,11 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
         myadapter = new Myadapter(context, R.layout.btsspot_01, blockList);
         listView.setAdapter(myadapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.gc();
+        finish();
+    }
 }

@@ -117,7 +117,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sourcCo).title("สถานี").snippet("Start from Here"));
 
         LatLng center = sourcCo;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,17));
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
@@ -168,8 +168,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addPolyline(new PolylineOptions().geodesic(true)
                 .add(destCo)  // Sydney
                 .add(sourcCo));// My Home
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.gc();
+        finish();
     }
 }
 
