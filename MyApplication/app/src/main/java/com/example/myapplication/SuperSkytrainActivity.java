@@ -48,6 +48,16 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             intent.setData(Uri.parse(getUrl()));
             startActivity(intent);
         }
+
+        @Override
+        public void openMap(LocationCoordinate locationCoordinate) {
+            Intent intent = new Intent(getContext(), MapsActivity.class);
+            intent.putExtra("lati_start", locationCoordinate.getStart_latitude());
+            intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
+            intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
+            intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
+            startActivity(intent);
+        }
     }
 
     ;

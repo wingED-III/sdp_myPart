@@ -1,8 +1,6 @@
 package com.example.myapplication.Listview;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public abstract class abs_Myadapter extends ArrayAdapter {
@@ -40,7 +36,7 @@ public abstract class abs_Myadapter extends ArrayAdapter {
             view = inflater.inflate(mLayout, parent, false);
         }
 
-        MyBlock block = myBlockArrayList.get(position);
+        final MyBlock block = myBlockArrayList.get(position);
 
         ImageView img = (ImageView) view.findViewById(R.id.location_Img);
         img.setImageDrawable(block.getImage_drawble());
@@ -52,8 +48,8 @@ public abstract class abs_Myadapter extends ArrayAdapter {
         tvDesc.setText(block.getDescript());
 
         final String URL = "https://google.com/search?q=" + block.getLocation();
-        block.setButton((Button) view.findViewById(R.id.ggMap));
-        block.getButton().setOnClickListener(new View.OnClickListener() {
+        block.setGoogleButton((Button) view.findViewById(R.id.ggMap));
+        block.getGoogleButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 url = URL;
@@ -61,11 +57,23 @@ public abstract class abs_Myadapter extends ArrayAdapter {
             }
         });
 
+        block.setMapButton((Button) view.findViewById(R.id.GoogleMaps));
+        block.getMapButton().setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                openMap(block.getCoordinate());
+            }
+        });
 
         return view;
     }
 
     public abstract void openWeb();
+
+    public abstract void openMap(LocationCoordinate locationCoordinate);
+
+
 
     public String getUrl() {
         return url;

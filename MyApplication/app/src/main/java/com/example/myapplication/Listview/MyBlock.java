@@ -8,7 +8,17 @@ public class MyBlock {
     private int type;
     private String location;
     private String descript;
-    private Button button;
+    private Button googleButton;
+    private Button mapButton;
+
+    public Button getMapButton() {
+        return mapButton;
+    }
+
+    public void setMapButton(Button mapButton) {
+        this.mapButton = mapButton;
+    }
+
     private Drawable image_drawble;
     private LocationCoordinate coordinate;
 
@@ -45,8 +55,8 @@ public class MyBlock {
         this.image_drawble = image_drawble;
     }
 
-    public Button getButton() {
-        return button;
+    public Button getGoogleButton() {
+        return googleButton;
     }
 
 
@@ -58,8 +68,8 @@ public class MyBlock {
         return type;
     }
 
-    public void setButton(Button button) {
-        this.button = button;
+    public void setGoogleButton(Button googleButton) {
+        this.googleButton = googleButton;
 
     }
 

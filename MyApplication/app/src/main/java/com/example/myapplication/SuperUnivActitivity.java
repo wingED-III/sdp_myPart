@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.example.myapplication.Filter.SearchFilter;
@@ -38,6 +39,18 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
         public void openWeb() {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(getUrl()));
+            startActivity(intent);
+        }
+
+        @Override
+        public void openMap(LocationCoordinate locationCoordinate) {
+            Intent intent = new Intent(getContext(),MapsActivity.class);
+            intent.putExtra("lati_start",locationCoordinate.getStart_latitude());
+            intent.putExtra("longi_start",locationCoordinate.getStart_longtitude());
+            intent.putExtra("lati_dest",locationCoordinate.getDest_latitude());
+            intent.putExtra("longi_dest",locationCoordinate.getDest_longtitude());
+            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: "+ locationCoordinate.getStart_longtitude());
+
             startActivity(intent);
         }
     }
