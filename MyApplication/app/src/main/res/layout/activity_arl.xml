@@ -73,8 +73,9 @@
     <RadioGroup
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="200dp"
         android:layout_below="@+id/headerArl"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="2dp"
         tools:ignore="UnknownId">
 
         <RadioButton
@@ -97,16 +98,16 @@
             android:id="@+id/natureCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-65dp"
             android:layout_marginLeft="100dp"
+            android:layout_marginTop="-65dp"
             android:text="ธรรมชาติ" />
 
         <RadioButton
             android:id="@+id/shoppingCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
             android:layout_marginLeft="100dp"
+            android:layout_marginTop="0dp"
             android:text="Shopping Mall" />
 
         <RadioButton

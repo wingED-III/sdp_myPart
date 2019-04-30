@@ -29,46 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class MRT extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
-    class Myadapter extends abs_Myadapter {
-        Myadapter(Context context, int layout, ArrayList<MyBlock> myBlockArrayList) {
-            super(context, layout, myBlockArrayList);
-        }
-
-        @Override
-        public void openWeb() {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(getUrl()));
-            startActivity(intent);
-        }
-
-        @Override
-        public void openMap(LocationCoordinate locationCoordinate) {
-            Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-//            Bundle bundle = new Bundle();
-//            bundle.putString("ads","HAHA");
-//            bundle.putDouble(" lati_start", locationCoordinate.getStart_longtitude());
-//            intent.putExtras(bundle);
-            // intent.putExtra("asd", "WTFFFFF");
-            intent.putExtra("lati_start", locationCoordinate.getStart_longtitude());
-            intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
-            intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
-            intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
-            //Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
-            startActivity(intent);
-        }
-    }
-
-    ;
-
-    private SearchFilter searchFilter = new SearchFilter();
-    private Myadapter myadapter;
-    private ListView listView;
-    private ArrayList<MyBlock> blockList;
-    private ArrayList<MyBlock> allBlock = new ArrayList<>();
-
-    private Spinner spinner;
+public class MRT extends SuperSkytrainActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +37,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         setContentView(R.layout.activity_mrt);
 
         // Spinner
-        spinner = findViewById(R.id.items);
+        this.spinner = findViewById(R.id.items);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.mrt, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -85,7 +46,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        spinner.setSelection(0);
+        //spinner.setSelection(0);
         //----------------------------------------------
 
         // RadioButton
@@ -103,66 +64,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
         cbOthers.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
-        SqliteHelper myDB = new SqliteHelper(this, "MRT_TABLE");
-
-        listView = (ListView) findViewById(R.id.mrtLV);
-        blockList = new ArrayList<>();
-
-        /* M ------------------ */
-
-        try {
-            myDB.createDB();
-        } catch (IOException e) {
-            throw new Error("Cannot Create Database");
-        }
-        try {
-            myDB.openDB();
-
-        } catch (SQLiteException e) {
-            throw e;
-        }
-        //---------Skytrain class-------//
-        Cursor line = myDB.getTable();
-        line.moveToFirst();
-        do {
-            int stationID = line.getInt(line.getColumnIndex("station_id")) - myConstatnt.MRT_CONST - 1; //spinner start at 0
-            int type = line.getInt(line.getColumnIndex("type"));
-
-            String location = line.getString(line.getColumnIndex("location"));
-            String availTime = line.getString(line.getColumnIndex("available_time"));
-            String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-
-            double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
-            double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
-            double lat_dest = line.getDouble(line.getColumnIndex("dest_latitude"));
-            double long_dest = line.getDouble(line.getColumnIndex("dest_longitude"));
-
-
-            LocationCoordinate coordinate = new LocationCoordinate(lat_start, lat_dest, long_start, long_dest);
-            //Log.d("Latintude", "start: "+lat_start);
-            Drawable drawable = null;
-            try {
-                // get input stream
-                InputStream ims = getAssets().open("loc_img/" + location + ".jpg");
-                // load image as Drawable
-                drawable = Drawable.createFromStream(ims, null);
-                //Log.d("aSDAA", "executeeeeeeeeeeee: ");
-            } catch (IOException ex) {
-                Log.e("View", "Image from Asset ", ex);
-            }
-
-            MyBlock myBlock = new MyBlock(stationID, type, location, descript, drawable, coordinate);
-
-            blockList.add(myBlock);
-        } while (line.moveToNext());
-
-        allBlock.addAll(blockList);
-        //---------in Skytrain class-------//
-
-        myadapter = new Myadapter(getBaseContext(), R.layout.btsspot_01, blockList);
-        listView.setAdapter(myadapter);
-
-        /*  ----------------------*/
+        this.constructListView(getBaseContext(), "MRT_TABLE", myConstatnt.MRT_CONST, R.id.mrtLV);
 
     }
 
@@ -171,8 +73,7 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-        this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
-        Toast.makeText(this, "id = " + this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+        this.whenSpinnerSelected();
     }
 
     @Override
@@ -180,39 +81,9 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
 
     }
 
-    //----------------------------------------------------------
-    // RadioButton & Search button
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.marketCB:
-                Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
-                this.searchFilter.setTypeLocation(1);
-                break;
-            case R.id.restaurantCB:
-                Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
-                this.searchFilter.setTypeLocation(3);
-                break;
-            case R.id.natureCB:
-                Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
-                this.searchFilter.setTypeLocation(2);
-                break;
-            case R.id.shoppingCB:
-                Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
-                this.searchFilter.setTypeLocation(4);
-                break;
-            case R.id.othersCB:
-                Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
-                this.searchFilter.setTypeLocation(5);
-                break;
-            case R.id.searchButton:
-                Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
-                searchFilter.filtering(blockList, allBlock);
-                myadapter.notifyDataSetChanged();
-                System.gc();
-                break;
-        }
+        this.whenClick(v);
     }
 
     @Override
