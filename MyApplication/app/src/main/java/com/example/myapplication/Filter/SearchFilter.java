@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SearchFilter {
     private int selectedStation = 1;
-    private int typeLocation = 1;
+    private int typeLocation = 0;
 
     public SearchFilter() {
     }
