@@ -34,13 +34,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     TextView mainmenu ;
 
-    Bundle bundle = getIntent().getExtras();
-
-    double lati_start = bundle.getDouble("lati_start");
-    double longi_start = bundle.getDouble("longi_start");
-    double lati_dest = bundle.getDouble("lati_dest");
-    double longi_dest = bundle.getDouble("longi_dest");
-
     final LatLng sydney = new LatLng(-34, 151);
     final LatLng myHome = new LatLng(-34.1, 150);
 
@@ -63,6 +56,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         buttonSatellite.setOnClickListener(this);
         buttonHybrid.setOnClickListener(this);
         buttonNavigate.setOnClickListener(this);
+//
+//        Bundle bundle = getIntent().getExtras();
+//
+//        double lati_start = bundle.getDouble("lati_start");
+//        double longi_start = bundle.getDouble("longi_start");
+//        double lati_dest = bundle.getDouble("lati_dest");
+//        double longi_dest = bundle.getDouble("longi_dest");
     }
 
     @Override

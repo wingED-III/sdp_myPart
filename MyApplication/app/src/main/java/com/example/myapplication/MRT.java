@@ -45,13 +45,17 @@ public class MRT extends AppCompatActivity implements AdapterView.OnItemSelected
 
         @Override
         public void openMap(LocationCoordinate locationCoordinate) {
-            Intent intent = new Intent(MRT.this, MapsActivity.class);
-
+            Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("ads","HAHA");
+//            bundle.putDouble(" lati_start", locationCoordinate.getStart_longtitude());
+//            intent.putExtras(bundle);
+            // intent.putExtra("asd", "WTFFFFF");
             intent.putExtra("lati_start", locationCoordinate.getStart_longtitude());
             intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
             intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
             intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
-            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: "+ locationCoordinate.getStart_longtitude());
+            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
             startActivity(intent);
         }
     }
