@@ -31,21 +31,21 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".university_SPU" />
-        <activity android:name=".university_MU" />
-        <activity android:name=".university_TU" />
-        <activity android:name=".university_CU" />
-        <activity android:name=".university_KMITL" />
-        <activity android:name=".PurpleLine" />
-        <activity android:name=".ARL" />
-        <activity android:name=".MRT" />
-        <activity android:name=".BTS" />
-        <activity android:name=".Activity2" />
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".university_SPU" android:screenOrientation="portrait"/>
+        <activity android:name=".university_MU" android:screenOrientation="portrait"/>
+        <activity android:name=".university_TU" android:screenOrientation="portrait"/>
+        <activity android:name=".university_CU" android:screenOrientation="portrait"/>
+        <activity android:name=".university_KMITL" android:screenOrientation="portrait"/>
+        <activity android:name=".PurpleLine" android:screenOrientation="portrait"/>
+        <activity android:name=".ARL" android:screenOrientation="portrait"/>
+        <activity android:name=".MRT" android:screenOrientation="portrait"/>
+        <activity android:name=".BTS" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity2" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

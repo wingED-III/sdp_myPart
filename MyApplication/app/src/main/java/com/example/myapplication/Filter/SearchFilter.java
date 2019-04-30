@@ -30,8 +30,10 @@ public class SearchFilter {
     public void filtering(ArrayList<MyBlock> bufferList, ArrayList<MyBlock> allBlocksList) {
         bufferList.clear();
         for (MyBlock block : allBlocksList) {
-            if (block.getStatinID() == this.selectedStation && block.getType() == this.typeLocation) {
-                bufferList.add(block);
+            if (block.getStatinID() == this.selectedStation) {
+                if (block.getType() == this.typeLocation || this.typeLocation == 0) {
+                    bufferList.add(block);
+                }
             }
         }
     }

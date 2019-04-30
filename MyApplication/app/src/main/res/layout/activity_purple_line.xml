@@ -70,7 +70,7 @@
 
     <RadioGroup
         android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_marginLeft="200dp"
         android:layout_below="@+id/headerPurple"
         tools:ignore="UnknownId">
@@ -114,6 +114,14 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             android:text="อื่นๆ" />
+
+        <RadioButton
+            android:id="@+id/allCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:text="ทั้งหมด" />
 
     </RadioGroup>
 

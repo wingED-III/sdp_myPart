@@ -88,8 +88,6 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             String location = line.getString(line.getColumnIndex("location"));
             String availTime =  line.getString(line.getColumnIndex("available_time"));
             String descript = line.getString(line.getColumnIndex("description")) + "\n\n"+"เวลาทำการ: "+ availTime;
-           // int imageID = this.getResources().getIdentifier(location,"id",this.getPackageName());
-           // Log.d("Construct", "imageID= "+imageID);
 
             double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
             double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
@@ -105,7 +103,6 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
                 InputStream ims = getAssets().open("loc_img/"+location + ".jpg");
                 // load image as Drawable
                 drawable = Drawable.createFromStream(ims, null);
-                //Log.d("aSDAA", "executeeeeeeeeeeee: ");
             } catch (IOException ex) {
                 Log.e("View", "Image from Asset ", ex);
             }
@@ -135,6 +132,10 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
     protected void whenClick(View v) {
         switch (v.getId()) {
+            case R.id.allCB:
+                Toast.makeText(this, "all_checked", Toast.LENGTH_SHORT).show();
+                this.searchFilter.setTypeLocation(0);
+                break;
             case R.id.marketCB:
                 Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(1);
