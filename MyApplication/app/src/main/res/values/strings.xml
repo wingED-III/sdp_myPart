@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
 
     <string-array name="bts">
+        <item>ทั้งหมด</item>
         <item>หมอชิต</item>
         <item>อารีย์</item>
         <item>อนุสาวรีย์ชัยสมรภูมิ</item>
@@ -30,6 +31,7 @@
     </string-array>
 
     <string-array name="mrt">
+        <item>ทั้งหมด</item>
         <item>เตาปูน</item>
         <item>กำแพงเพชร</item>
         <item>สวนจตุจักร</item>
@@ -48,12 +50,14 @@
     </string-array>
 
     <string-array name="arl">
+        <item>ทั้งหมด</item>
         <item>หัวหมาก</item>
         <item>พญาไท</item>
 
     </string-array>
 
     <string-array name="purple">
+        <item>ทั้งหมด</item>
         <item>คลองบางไผ่</item>
         <item>สามแยกบางใหญ่</item>
         <item>บางพลู</item>

@@ -86,7 +86,7 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
         Cursor line = myDB.getTable();
         line.moveToFirst();
         do {
-            int stationID = line.getInt(line.getColumnIndex("station_id")) - TRANSPORT_CONSTANT - 1;  //spinner start at 0
+            int stationID = line.getInt(line.getColumnIndex("station_id")) - TRANSPORT_CONSTANT;  //spinner start at 0
             int type = line.getInt(line.getColumnIndex("type"));
 
             String location = line.getString(line.getColumnIndex("location"));
@@ -123,7 +123,7 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
 
     protected void doSearch() {
-        //Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
         searchFilter.filtering(blockList, allBlock);
         myadapter.notifyDataSetChanged();
         System.gc();

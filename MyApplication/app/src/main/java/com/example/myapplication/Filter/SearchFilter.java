@@ -5,7 +5,7 @@ import com.example.myapplication.Listview.MyBlock;
 import java.util.ArrayList;
 
 public class SearchFilter {
-    private int selectedStation = 1;
+    private int selectedStation = 0;
     private int typeLocation = 0;
 
     public SearchFilter() {
@@ -29,10 +29,14 @@ public class SearchFilter {
 
     public void filtering(ArrayList<MyBlock> bufferList, ArrayList<MyBlock> allBlocksList) {
         bufferList.clear();
-        for (MyBlock block : allBlocksList) {
-            if (block.getStatinID() == this.selectedStation) {
-                if (block.getType() == this.typeLocation || this.typeLocation == 0) {
-                    bufferList.add(block);
+        if (this.selectedStation + this.typeLocation == 0) {
+            bufferList.addAll(allBlocksList);
+        } else {
+            for (MyBlock block : allBlocksList) {
+                if (block.getStatinID() == this.selectedStation || this.selectedStation == 0) {
+                    if (block.getType() == this.typeLocation || this.typeLocation == 0) {
+                        bufferList.add(block);
+                    }
                 }
             }
         }
