@@ -113,13 +113,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
 
-        mMap.addMarker(new MarkerOptions().position(destCo).title("Marker in Sydney").snippet("Hello Sydney"));
+        mMap.addMarker(new MarkerOptions().position(destCo).title("สถานที่ปลายทาง"));
+        mMap.addMarker(new MarkerOptions().position(sourcCo).title("สถานี").snippet("Start from Here"));
 
-
-        mMap.addMarker(new MarkerOptions().position(sourcCo).title("My Home").snippet("Hello my home"));
-
-        LatLng center = new LatLng(-34.05, 150.5);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 8));
+        LatLng center = sourcCo;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,10));
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
@@ -173,6 +171,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-
 }
 
