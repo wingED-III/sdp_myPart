@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,18 +8,14 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.myapplication.Defination.myConstatnt;
 import com.example.myapplication.Filter.SearchFilter;
-import com.example.myapplication.Listview.LocationCoordinate;
+import com.example.myapplication.mapPack.LocationCoordinate;
 import com.example.myapplication.Listview.MyBlock;
 import com.example.myapplication.Listview.abs_Myadapter;
 import com.example.myapplication.javaSQL.SqliteHelper;

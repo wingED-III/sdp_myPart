@@ -3,6 +3,8 @@ package com.example.myapplication.Listview;
 import android.graphics.drawable.Drawable;
 import android.widget.Button;
 
+import com.example.myapplication.mapPack.LocationCoordinate;
+
 public class MyBlock {
     private int statinID;
     private int type;

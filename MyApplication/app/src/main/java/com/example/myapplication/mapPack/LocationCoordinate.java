@@ -1,4 +1,4 @@
-package com.example.myapplication.Listview;
+package com.example.myapplication.mapPack;
 
 public class LocationCoordinate {
     private double start_latitude;

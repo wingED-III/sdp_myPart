@@ -13,6 +13,8 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
+import com.example.myapplication.mapPack.LocationCoordinate;
+
 public abstract class abs_Myadapter extends ArrayAdapter {
     private Context mContext;
     private ArrayList<MyBlock> myBlockArrayList;

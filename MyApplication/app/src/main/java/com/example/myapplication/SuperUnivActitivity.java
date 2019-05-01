@@ -11,13 +11,12 @@ import android.widget.ListView;
 
 import com.example.myapplication.Filter.SearchFilter;
 import com.example.myapplication.Listview.*;
-import com.example.myapplication.R;
 import com.example.myapplication.javaSQL.SqliteHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.example.myapplication.Defination.myConstatnt;
+import com.example.myapplication.mapPack.LocationCoordinate;
 
 abstract public class SuperUnivActitivity extends AppCompatActivity {
 
