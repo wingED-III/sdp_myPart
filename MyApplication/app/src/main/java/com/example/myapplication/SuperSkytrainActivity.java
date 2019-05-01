@@ -118,7 +118,7 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
 
     protected void doSearch() {
-        Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
         searchFilter.filtering(blockList, allBlock);
         myadapter.notifyDataSetChanged();
         System.gc();
@@ -126,37 +126,37 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
 
     protected void whenSpinnerSelected() {
         this.searchFilter.setSelectedStation(this.spinner.getSelectedItemPosition());
-        Toast.makeText(this, "id = " + this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "id = " + this.spinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
     }
 
     protected void whenClick(View v) {
         switch (v.getId()) {
             case R.id.allCB:
-                Toast.makeText(this, "all_checked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "all_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(0);
                 break;
             case R.id.marketCB:
-                Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "market_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(1);
                 break;
             case R.id.restaurantCB:
-                Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "restaurant_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(3);
                 break;
             case R.id.natureCB:
-                Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "nature_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(2);
                 break;
             case R.id.shoppingCB:
-                Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, "shopping_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(4);
                 break;
             case R.id.othersCB:
-                Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, "others_checked", Toast.LENGTH_SHORT).show();
                 this.searchFilter.setTypeLocation(5);
                 break;
             case R.id.searchButton:
-                Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, "search_clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(this, this.searchFilter.toString(), Toast.LENGTH_SHORT).show();
                 searchFilter.filtering(blockList, allBlock);
                 myadapter.notifyDataSetChanged();

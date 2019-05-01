@@ -52,7 +52,7 @@ public class MiniBusActivity extends AppCompatActivity {
         ListView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MiniBusActivity.this,"Position = "+position,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MiniBusActivity.this,"Position = "+position,Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MiniBusActivity.this,ShowDetailActivity.class);
                 intent.putExtra("image",minibusList.get(position).getResId());

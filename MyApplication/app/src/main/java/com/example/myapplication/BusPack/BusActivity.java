@@ -44,7 +44,7 @@ public class BusActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 UniversityItem clickedItem = (UniversityItem) parent.getItemAtPosition(position);
                 String clickedUniName = clickedItem.getmUnversityName();
-                Toast.makeText(BusActivity.this,clickedUniName+" selected",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(BusActivity.this,clickedUniName+" selected",Toast.LENGTH_SHORT).show();
                  indexUni = spinnerUniversity.getSelectedItemPosition();
 
 
@@ -55,7 +55,7 @@ public class BusActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(BusActivity.this,"Please Choose University",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BusActivity.this,"Please Choose University",Toast.LENGTH_SHORT).show();
             }
         });
         //listview
