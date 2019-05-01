@@ -1,8 +1,13 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
@@ -180,13 +185,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.e("test", "Can't find style. Error: ", e);
         }
 
-
-        // Getting URL to the Google Directions API
-        String url = getDirectionsUrl(destCo, sourcCo);
-        DownloadTask downloadTask = new DownloadTask();
-        // Start downloading json data from Google Directions API
-        downloadTask.execute(url);
-
+        if (isNetworAvailable()) {
+            // Getting URL to the Google Directions API
+            String url = getDirectionsUrl(destCo, sourcCo);
+            DownloadTask downloadTask = new DownloadTask();
+            // Start downloading json data from Google Directions API
+            downloadTask.execute(url);
+        }
+        else {
+            alertNoNet();
+        }
 
     }
 
@@ -354,6 +362,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         }
+    }
+
+    private boolean isNetworAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+        }
+        return false;
+    }
+
+    private void alertNoNet(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Alert!").setMessage("No Internet Connection")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                        }
+                    });
+            AlertDialog dialog = alertDialogBuilder.create();
+            dialog.show();
+
     }
 }
 

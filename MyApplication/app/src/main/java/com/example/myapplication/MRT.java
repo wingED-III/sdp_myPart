@@ -46,7 +46,7 @@ public class MRT extends SuperSkytrainActivity implements AdapterView.OnItemSele
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        //spinner.setSelection(0);
+
         //----------------------------------------------
 
         // RadioButton
