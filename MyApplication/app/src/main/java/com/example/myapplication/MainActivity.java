@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.myapplication.BusPack.BusActivity;
+import com.example.myapplication.BusPack.MiniBusActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //private Button button;
 
@@ -66,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
     public void openActivity7(){   // Minibus-SongTaew
-        //Intent intent = new Intent(this,Activity2.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, MiniBusActivity.class);
+        startActivity(intent);
     }
     public void openActivity8(){   // Bus
-        //Intent intent = new Intent(this,Activity2.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, BusActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -97,10 +100,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openActivity6();
                 break;
             case R.id.button7:
-                Toast.makeText(this,"Minibus_Clicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Minibus_Clicked",Toast.LENGTH_SHORT).show();
+                openActivity7();
                 break;
             case R.id.button8:
-                Toast.makeText(this,"Bus_Clicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Bus_Clicked",Toast.LENGTH_SHORT).show();
+                openActivity8();
                 break;
         }
     }
