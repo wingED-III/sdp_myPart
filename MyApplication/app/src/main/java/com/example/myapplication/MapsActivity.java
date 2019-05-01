@@ -180,18 +180,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.e("test", "Can't find style. Error: ", e);
         }
 
-        // try {
+
         // Getting URL to the Google Directions API
         String url = getDirectionsUrl(destCo, sourcCo);
         DownloadTask downloadTask = new DownloadTask();
-// Start downloading json data from Google Directions API
+        // Start downloading json data from Google Directions API
         downloadTask.execute(url);
-//        } catch (NullPointerException e) {
-//            // Just a Line
-//            mMap.addPolyline(new PolylineOptions().geodesic(true)
-//                    .add(destCo)
-//                    .add(sourcCo));
-//        }
 
 
     }
@@ -213,13 +207,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Sensor enabled
         String sensor = "sensor=false";
         // Building the parameters to the web service
-        String parameters = str_origin + "&" + str_dest + "&" + sensor+"&"+mode;
+        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&" + mode;
         // Output format
         String output = "json";
         // Building the url to the web service
-        String key = "&key="+getString(R.string.google_maps_key);
+        String key = "&key=" + getString(R.string.google_maps_key);
 
-        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters+key;
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + key;
         return url;
     }
 
@@ -353,7 +347,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             try {
                 mMap.addPolyline(lineOptions);
             } catch (NullPointerException ex) {
-                Log.e("WTFFFF", "onPostExecute: ", ex);
+                Log.e("PolyLine Error", "onPostExecute: ", ex);
                 mMap.addPolyline(new PolylineOptions().geodesic(true)
                         .add(destCo)
                         .add(sourcCo));

@@ -50,7 +50,7 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
             intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
             intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
             intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
-            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
+            //Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
 
             startActivity(intent);
         }
@@ -83,7 +83,7 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
                 String location = line.getString(line.getColumnIndex("location"));
                 String availTime = line.getString(line.getColumnIndex("available_time"));
                 String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-                int imageID = this.getResources().getIdentifier(location, "drawable", this.getPackageName());
+
                 double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
                 double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
                 double lat_dest = line.getDouble(line.getColumnIndex("dest_latitude"));
