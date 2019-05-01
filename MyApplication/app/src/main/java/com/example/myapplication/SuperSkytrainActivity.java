@@ -85,8 +85,8 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             int type = line.getInt(line.getColumnIndex("type"));
 
             String location = line.getString(line.getColumnIndex("location"));
-            String availTime =  line.getString(line.getColumnIndex("available_time"));
-            String descript = line.getString(line.getColumnIndex("description")) + "\n\n"+"เวลาทำการ: "+ availTime;
+            String availTime = line.getString(line.getColumnIndex("available_time"));
+            String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
 
             double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
             double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
@@ -94,12 +94,12 @@ abstract class SuperSkytrainActivity extends AppCompatActivity {
             double long_dest = line.getDouble(line.getColumnIndex("dest_longitude"));
 
 
-            LocationCoordinate coordinate = new LocationCoordinate(lat_start,lat_dest,long_start,long_dest);
+            LocationCoordinate coordinate = new LocationCoordinate(lat_start, lat_dest, long_start, long_dest);
 
             Drawable drawable = null;
             try {
                 // get input stream
-                InputStream ims = getAssets().open("loc_img/"+location + ".jpg");
+                InputStream ims = getAssets().open("loc_img/" + location + ".jpg");
                 // load image as Drawable
                 drawable = Drawable.createFromStream(ims, null);
             } catch (IOException ex) {

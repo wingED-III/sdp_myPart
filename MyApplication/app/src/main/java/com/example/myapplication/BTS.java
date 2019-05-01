@@ -71,11 +71,5 @@ public class BTS extends SuperSkytrainActivity implements AdapterView.OnItemSele
         this.whenClick(v);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        System.gc();
-        finish();
-    }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.example.myapplication.Listview.*;
 import com.example.myapplication.javaSQL.SqliteHelper;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.example.myapplication.mapPack.LocationCoordinate;
@@ -43,12 +45,12 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
 
         @Override
         public void openMap(LocationCoordinate locationCoordinate) {
-            Intent intent = new Intent(getContext(),MapsActivity.class);
-            intent.putExtra("lati_start",locationCoordinate.getStart_latitude());
-            intent.putExtra("longi_start",locationCoordinate.getStart_longtitude());
-            intent.putExtra("lati_dest",locationCoordinate.getDest_latitude());
-            intent.putExtra("longi_dest",locationCoordinate.getDest_longtitude());
-            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: "+ locationCoordinate.getStart_longtitude());
+            Intent intent = new Intent(getContext(), MapsActivity.class);
+            intent.putExtra("lati_start", locationCoordinate.getStart_latitude());
+            intent.putExtra("longi_start", locationCoordinate.getStart_longtitude());
+            intent.putExtra("lati_dest", locationCoordinate.getDest_latitude());
+            intent.putExtra("longi_dest", locationCoordinate.getDest_longtitude());
+            Log.d("TESSSSSSSSSSSSSTTTTT", "openMap: " + locationCoordinate.getStart_longtitude());
 
             startActivity(intent);
         }
@@ -81,15 +83,25 @@ abstract public class SuperUnivActitivity extends AppCompatActivity {
                 String location = line.getString(line.getColumnIndex("location"));
                 String availTime = line.getString(line.getColumnIndex("available_time"));
                 String descript = line.getString(line.getColumnIndex("description")) + "\n\n" + "เวลาทำการ: " + availTime;
-                int imageID = this.getResources().getIdentifier(location,"drawable",this.getPackageName());
+                int imageID = this.getResources().getIdentifier(location, "drawable", this.getPackageName());
                 double lat_start = line.getDouble(line.getColumnIndex("start_latitude"));
                 double long_start = line.getDouble(line.getColumnIndex("start_longitude"));
                 double lat_dest = line.getDouble(line.getColumnIndex("dest_latitude"));
                 double long_dest = line.getDouble(line.getColumnIndex("dest_longitude"));
 
-                LocationCoordinate coordinate = new LocationCoordinate(lat_start,lat_dest,long_start,long_dest);
+                LocationCoordinate coordinate = new LocationCoordinate(lat_start, lat_dest, long_start, long_dest);
 
-                MyBlock myBlock = new MyBlock(uID, type, location, descript,null,coordinate);
+                Drawable drawable = null;
+                try {
+                    // get input stream
+                    InputStream ims = getAssets().open("loc_img/" + location + ".jpg");
+                    // load image as Drawable
+                    drawable = Drawable.createFromStream(ims, null);
+                } catch (IOException ex) {
+                    Log.e("View", "Image from Asset ", ex);
+                }
+
+                MyBlock myBlock = new MyBlock(uID, type, location, descript, drawable, coordinate);
 
                 blockList.add(myBlock);
             }
