@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.BusPack.BusActivity;
 import com.example.myapplication.BusPack.MiniBusActivity;
+import com.example.myapplication.Calculation.CostCal;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //private Button button;
@@ -43,45 +44,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });  */
     }
 
-    public void openActivity1(){   // Calculate fee
-        //Intent intent = new Intent(this,Activity2.class);
-        //startActivity(intent);
-    }
-    public void openActivity2(){   // University Spot
-        Intent intent = new Intent(this,Activity2.class);
+    public void openActivity1() {   // Calculate fee
+        Intent intent = new Intent(this, CostCal.class);
         startActivity(intent);
     }
-    public void openActivity3(){   // MRT
-        Intent intent = new Intent(this,MRT.class);
+
+    public void openActivity2() {   // University Spot
+        Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
     }
-    public void openActivity4(){   // ARL
-        Intent intent = new Intent(this,ARL.class);
+
+    public void openActivity3() {   // MRT
+        Intent intent = new Intent(this, MRT.class);
         startActivity(intent);
     }
-    public void openActivity5(){   // PurpleLine
-        Intent intent = new Intent(this,PurpleLine.class);
+
+    public void openActivity4() {   // ARL
+        Intent intent = new Intent(this, ARL.class);
         startActivity(intent);
     }
-    public void openActivity6(){   // BTS
+
+    public void openActivity5() {   // PurpleLine
+        Intent intent = new Intent(this, PurpleLine.class);
+        startActivity(intent);
+    }
+
+    public void openActivity6() {   // BTS
         //Toast.makeText(this,"BTS_Clicked",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, BTS.class);
         startActivity(intent);
     }
-    public void openActivity7(){   // Minibus-SongTaew
+
+    public void openActivity7() {   // Minibus-SongTaew
         Intent intent = new Intent(this, MiniBusActivity.class);
         startActivity(intent);
     }
-    public void openActivity8(){   // Bus
+
+    public void openActivity8() {   // Bus
         Intent intent = new Intent(this, BusActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button1:
-                Toast.makeText(this,"CalculatedFee_Clicked",Toast.LENGTH_SHORT).show();
+                openActivity1();
+                // Toast.makeText(this,"CalculatedFee_Clicked",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.button2: // UniversityMenu
                 openActivity2();

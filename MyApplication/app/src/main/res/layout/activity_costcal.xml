@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calculation.CostCal"
+    android:background="@color/costColor"
+   >
+
+    <Spinner
+        android:id="@+id/spinner_train"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:background="@color/stationSpinner"></Spinner>
+
+    <Button
+        android:id="@+id/butt_train"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:onClick="OnClickTrain"
+        android:text="ยืนยัน"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+    <Spinner
+        android:id="@+id/spinner_station1"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:background="@color/stationSpinner"
+        android:visibility="invisible"></Spinner>
+
+    <Spinner
+        android:id="@+id/spinner_station2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:background="@color/stationSpinner"
+        android:visibility="invisible"></Spinner>
+
+    <Button
+        android:id="@+id/butt_cal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:onClick="OnClickCal"
+        android:text="คำนวณ"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/priceCal"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="475dp"
+        android:layout_marginBottom="-24dp"
+        android:adjustViewBounds="true"
+        android:text="xx บาท"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

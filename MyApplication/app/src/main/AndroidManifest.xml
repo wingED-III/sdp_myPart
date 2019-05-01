@@ -38,6 +38,7 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".Calculation.CostCal" android:screenOrientation="portrait"/>
         <activity android:name=".BusPack.BusActivity" android:screenOrientation="portrait"/>
         <activity android:name=".BusPack.MiniBusActivity" android:screenOrientation="portrait"/>
         <activity android:name=".BusPack.ShowDetailActivity" android:screenOrientation="portrait"/>

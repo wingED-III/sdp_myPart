@@ -101,5 +101,90 @@
     <string name="minibus555">ราคา 8 บาท หลังสี่ทุ่มเป็นราคา 10 บาท ขึ้นป้ายรถเมล์ฝั่งคณะวิทยาศาสตร์ และ หอพัก FBT เส้นทางวิ่ง หัวตะเข้-เทคโนลาดกระบัง-เคหะร่มเกล้า</string>
     <string name="minibus777">ราคา 8 บาท หลังสี่ทุ่มเป็นราคา 10 บาท ขึ้นป้ายรถเมล์ฝั่งตึก12 ชั้นคณะวิศวกรรมศาสตร ์และ ฝั่งตึกสมเด็จพระเทพฯ และด้านล่างสถานี ARL ลาดกระบัง เส้นทางวิ่ง ARL ลาดกระบัง-เทคโนลาดกระบัง</string>
 
+    <string-array name="arl_name">
+        <item>พญาไท</item>
+        <item>ราชปรารภ</item>
+        <item>มักกะสัน</item>
+        <item>รามคำแหง</item>
+        <item>หัวหมาก</item>
+        <item>บ้านทับช้าง</item>
+        <item>ลาดกระบัง</item>
+        <item>สุวรรณภูมิ</item>
+    </string-array>
+    <string-array name="bts_name">
+        <item>หมอชิต</item>
+        <item>อารีย์</item>
+        <item>สนามเป้า</item>
+        <item>อนุสาวรีย์ชัยสมรภูมิ</item>
+        <item>พญาไท</item>
+        <item>ราชเทวี</item>
+        <item>สยาม</item>
+        <item>ชิดลม</item>
+        <item>เพลินจิต</item>
+        <item>นานา</item>
+        <item>อโศก</item>
+        <item>พร้อมพงษ์</item>
+        <item>ทองหล่อ</item>
+        <item>เอกมัย</item>
+        <item>พระโขนง</item>
+        <item>อ่อนนุช</item>
+        <item>บางจาก</item>
+        <item>ปุณณวิถี</item>
+        <item>อุดมสุข</item>
+        <item>บางนา</item>
+        <item>แบริ่ง</item>
+        <item>สำโรง</item>
+        <item>สนามกีฬาแห่งชาติ</item>
+        <item>ราชดำริ</item>
+        <item>ศาลาแดง</item>
+        <item>ช่องนนทรี</item>
+        <item>สุรศักดิ์</item>
+        <item>สะพานตักสิน</item>
+        <item>กรุงธนบุรี</item>
+        <item>วงเวียนใหญ่</item>
+        <item>โพธิ์นิมิตร</item>
+        <item>ตลาดพลู</item>
+        <item>วุฒากาศ</item>
+        <item>บางหว้า</item>
+    </string-array>
+    <string-array name="mrt_name">
+        <item>เตาปูน</item>
+        <item>บางซื่อ</item>
+        <item>กำแพงเพชร</item>
+        <item>สวนจตุจักร</item>
+        <item>พหลโยธิน</item>
+        <item>ลาดพร้าว</item>
+        <item>รัชดาภิเษก</item>
+        <item>สุทธิสาร</item>
+        <item>ห้วยขวาง</item>
+        <item>ศูนย์วัฒนธรรมแห่งชาติ</item>
+        <item>พระรามเ9</item>
+        <item>เพชรบุรี</item>
+        <item>สุขุมวิท</item>
+        <item>ศูนย์ประชุมแห่งชาติสิริกิติ์</item>
+        <item>คลองเตย</item>
+        <item>ลุมพินี</item>
+        <item>สีลม</item>
+        <item>สามย่าน</item>
+        <item>หัวลำโพง</item>
+    </string-array>
+    <string-array name="mrtp_name">
+        <item>เตาปูน</item>
+        <item>บางซ่อน</item>
+        <item>วงศ์สว่าง</item>
+        <item>แยกติวานนท์</item>
+        <item>กระทรวงสาธารณสุข</item>
+        <item>ศูนย์ราชการนนทบุรี 1</item>
+        <item>บางกระสอ</item>
+        <item>แยกนนทบุรี</item>
+        <item>สะพานพระนั่งเกล้า</item>
+        <item>ไทรม้า</item>
+        <item>บางรักน้อยท่าอิฐ</item>
+        <item>บางรักใหญ่</item>
+        <item>บางพลู</item>
+        <item>สามแยกบางใหญ่</item>
+        <item>ตลาดบางใหญ่</item>
+        <item>คลองบางไผ่</item>
+    </string-array>
 
 </resources>
